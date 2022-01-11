@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="jwt_member")
+@Builder
 public class PatientUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +40,7 @@ public class PatientUserEntity {
 
     @NotNull
     @Column(name = "dob", nullable=false)
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
 
     @NotNull
     @Column(name = "country", nullable=false)

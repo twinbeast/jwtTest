@@ -9,6 +9,4 @@ public interface JwtAuthRepository extends JpaRepository<JwtAuthEntity, Long> {
 
     JwtAuthEntity findByPatientNoAndStatusOrderByRegDateDesc(String patientNo, int status);
 
-    JwtAuthEntity findByAccessTokenAndPatientNo(String accessToken, String patientNo);
-
 }

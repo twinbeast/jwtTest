@@ -1,10 +1,12 @@
 package com.example.jwttest.Controller;
 
+import com.example.jwttest.Service.UserService;
 import com.example.jwttest.Service.jwt.JwtLoginService;
 import com.example.jwttest.Vo.Jwt.JwtModel;
 import com.example.jwttest.Security.jwt.JwtTokenProvider;
 import com.example.jwttest.Dao.JwtAuthDao;
 import com.example.jwttest.Vo.Jwt.JwtMemberModel;
+import com.example.jwttest.Vo.PatientUserVo;
 import com.example.jwttest.Vo.ResultVo;
 import com.google.gson.Gson;
 import com.nimbusds.oauth2.sdk.util.StringUtils;
@@ -29,7 +31,19 @@ public class LoginController {
     @Autowired
     JwtLoginService loginService;
     @Autowired
+    UserService userService;
+    @Autowired
     Gson gson;
+
+    @ResponseBody
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+    public String signUp(@RequestBody PatientUserVo signUpData){
+        boolean duplicateChk = userService.checkDuplicate(signUpData.getPatientId());
+        if(duplicateChk==false)
+            return gson.toJson(ResultVo.builder().result("fail").msg("Duplicated").build());
+
+        return gson.toJson(userService.signUp(signUpData));
+    }
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)

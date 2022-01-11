@@ -90,9 +90,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {         //Jwt 검증이 필요없는 URL 등록
         Collection<String> excludeUrlPatterns = new LinkedHashSet<>();
-        excludeUrlPatterns.add("/login/**");
-        excludeUrlPatterns.add("/logout/**");
-        excludeUrlPatterns.add("/signup/**");
+        excludeUrlPatterns.add("/login");
+        excludeUrlPatterns.add("/logout");
+        excludeUrlPatterns.add("/signup");
         excludeUrlPatterns.add("/resources/**");
 
         return excludeUrlPatterns.stream()

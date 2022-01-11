@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<PatientUserEntity, Long> {
 
     //like검색도 가능
     List<PatientUserEntity> findByFirstNameLike(String firstName);
+
+//    PatientUserEntity saveGet(PatientUserEntity entity);
 }

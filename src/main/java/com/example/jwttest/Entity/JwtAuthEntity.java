@@ -21,15 +21,15 @@ public class JwtAuthEntity {
     private Long authNo;
 
     @NotNull
-    @Column(name = "patientNo", unique=true, nullable=false)
+    @Column(name = "patientNo", nullable=false)
     private Long patientNo;
 
     @NotNull
-    @Column(name = "refreshToken", unique=true, nullable=false)
+    @Column(name = "refreshToken", nullable=false)
     private String token;
 
     @NotNull
-    @Column(name = "expireDateTime", unique=true, nullable=false)
+    @Column(name = "expireDateTime", nullable=false)
     private String expireDateTime;
 
     @NotNull
