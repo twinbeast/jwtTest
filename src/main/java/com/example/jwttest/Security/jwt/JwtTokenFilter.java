@@ -36,7 +36,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(
             HttpServletRequest request, HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
+        log.info("doFilterInternal : "+request.getRequestURI());
         String accessToken = jwtTokenProvider.resolveCookie(request);
+        log.info("doFilterInternal : accessToken - "+accessToken);
         String refreshToken = null;
 
         // access 토큰 검증 과정
@@ -84,6 +86,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             }
         }
 
+        log.info("doFilterInternal : before doFilter - "+accessToken+" / "+refreshToken);
         filterChain.doFilter(request, response);
     }
 

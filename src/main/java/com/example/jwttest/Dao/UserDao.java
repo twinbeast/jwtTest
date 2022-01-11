@@ -3,6 +3,7 @@ package com.example.jwttest.Dao;
 import com.example.jwttest.Entity.PatientUserEntity;
 import com.example.jwttest.Repository.UserRepository;
 import com.example.jwttest.Vo.PatientUserVo;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Component;
 public class UserDao {
     @Autowired
     UserRepository userRepo;
+    @Autowired
+    Gson gson;
 
-    public Boolean getUserById(String userId){
+    public Boolean duplicateCheck(String userId){
         PatientUserEntity entity = userRepo.findByPatientId(userId);
-        if(entity==null)
+        if(entity!=null)
             return true;
         else
             return false;
@@ -24,21 +27,22 @@ public class UserDao {
     public PatientUserVo insertUserData(PatientUserVo userData){
         PatientUserEntity entity = userRepo.save(PatientUserEntity.builder()
                 .patientId(userData.getPatientId())
-                .patientPw(userData.getPaitentPw())
+                .patientPw(userData.getPatientPw())
                 .country(userData.getCountry())
                 .dateOfBirth(userData.getDateOfBirth())
                 .firstName(userData.getFirstName())
                 .lastName(userData.getLastName())
                 .sex(userData.getGender())
                 .build());
-        return PatientUserVo.builder().patientNo(entity.getPatientNo().intValue())
+        return PatientUserVo.builder()
+                .patientNo(entity.getPatientNo().intValue())
                 .patientId(entity.getPatientId())
-                .paitentPw(entity.getPatientPw())
+                .patientPw(entity.getPatientPw())
                 .dateOfBirth(entity.getDateOfBirth())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .gender(entity.getSex())
-                .regDate(entity.getRegDate().toString())
+                .regDate(entity.getRegDate())
                 .status(entity.getStatus())
                 .build();
     }

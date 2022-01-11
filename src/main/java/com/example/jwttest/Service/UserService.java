@@ -14,10 +14,13 @@ public class UserService {
     UserDao userDao;
 
     public Boolean checkDuplicate(String userId){
-        return userDao.getUserById(userId);
+        return userDao.duplicateCheck(userId);
     }
 
     public ResultVo signUp(PatientUserVo user){
+        if(checkDuplicate(user.getPatientId())){
+            return ResultVo.builder().result("fail").msg("Fail Duplicated").build();
+        }
         user = userDao.insertUserData(user);
         if(user==null)
             return ResultVo.builder().result("fail").msg("Fail Insert").build();
