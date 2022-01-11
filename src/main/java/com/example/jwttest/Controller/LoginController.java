@@ -38,6 +38,7 @@ public class LoginController {
     @ResponseBody
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     public String signUp(@RequestBody PatientUserVo signUpData){
+        log.info("/signUp: "+gson.toJson(signUpData));
         boolean duplicateChk = userService.checkDuplicate(signUpData.getPatientId());
         if(duplicateChk==false)
             return gson.toJson(ResultVo.builder().result("fail").msg("Duplicated").build());

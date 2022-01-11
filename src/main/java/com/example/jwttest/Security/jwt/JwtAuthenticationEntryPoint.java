@@ -27,8 +27,14 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
         ErrorCode unAuthorizationCode = (ErrorCode) request.getAttribute("unauthorization");
 
-        request.setAttribute("response.failure.code", unAuthorizationCode.name());
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, unAuthorizationCode.message());
+        if(unAuthorizationCode==null){
+            log.error(request.getRequestURI()+" - unAuthorizationCode Null");
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UnAuthorization");
+        }else{
+            request.setAttribute("response.failure.code", unAuthorizationCode.name());
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, unAuthorizationCode.message());
+        }
+
     }
 
 }
