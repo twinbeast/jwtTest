@@ -1,0 +1,75 @@
+
+server:
+  port: 9001
+
+#
+#spring:
+## Database Setting
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://IPAddr:3306/test?useUnicode=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&serverTimezone=Asia/Seoul
+#    username: root
+#    password: ejdkdlqlwjs0608)^)*
+##JPA Setting
+#  jpa:
+#    database: mysql
+#    database-platform: org.hibernate.dialert.MySQL5InnoDBDialert
+#    show-sql: true  #Print Query
+#    generate-ddl: false
+##    hibernate:
+##    database: #mysql
+##       database-platform: org.hibernate.dialert.MySQL5InnoDBDialert
+##       generate-ddl: false
+##       hibernate:
+#      # ddl-auto: false
+##       open-in-view: false
+##       show-sql: true
+#    properties:
+#      hibernate:
+#        show_sql: true            # Print SQL Query
+#        format_sql: true          # Show SQL in Format
+#        use_sql_comments: true    # Print Debuging Info
+#          #Dialect 설정
+##          dialect: org.hibernate.dialect.MySQL5InnoDBDialert
+#          #하이버네이트가 실행하는 모든 SQL문을 콘솔로 출력해 준다.
+##          show_sql: true
+#          #콘솔에 출력되는 JPA 실행 쿼리를 가독성있게 표현한다.
+##          format_sql: true
+#          #디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력해 준다.
+##          use_sql_comments: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://IPAddr:3306/test?useUnicode=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&serverTimezone=Asia/Seoul
+    username: root
+    password: ejdkdlqlwjs0608)^)*
+    dbcp2:
+      validation-query: SELECT 1
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: true
+    generate-ddl: true      #DDL 적용할지 여부 (실서비스는 false)
+    hibernate:
+#      ddl-auto: none        #Default 아무것도 안함
+#      ddl-auto: create-drop #SessionFactory 실행할때 drop & create -> 종료될때 drop (in-memory)
+#      ddl-auto: create      #SessionFactory 실행할때 drop & create
+#      ddl-auto: validate    #변경된 스키마가 있으면 종료
+      ddl-auto: update      #변경된 스키마 적용
+
+    properties:
+      hibernate:
+        format_sql: true
+
+
+
+
+
+jwt:
+  secret-key: returnbliss-key
+  access-token-expire-length: 3600000 # 1 Hour
+  refresh-token-expire-length: 86400000 # 1 Day
+  header-name: returnbliss-bearer
