@@ -50,9 +50,9 @@ public class PatientUserEntity {
     @Column(name = "gender", nullable=false)
     private String sex;
 
-    @Column(name = "status", nullable = false, updatable = false, insertable = false, columnDefinition = "int(1) default 0")
+    @Column(name = "status", nullable = false, insertable = false, columnDefinition = "int(1) default 0")
     private int status;
 
     @Column(name = "regDate", nullable = false, updatable = false, insertable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-    private LocalDate regDate;
+    private LocalDateTime regDate;
 }

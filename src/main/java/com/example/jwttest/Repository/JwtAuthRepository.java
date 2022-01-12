@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JwtAuthRepository extends JpaRepository<JwtAuthEntity, Long> {
 
-    JwtAuthEntity findByPatientNoAndStatusOrderByRegDateDesc(String patientNo, int status);
+    JwtAuthEntity findByPatientNoAndStatusOrderByRegDateDesc(Long patientNo, int status);
 
 }

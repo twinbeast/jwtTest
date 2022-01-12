@@ -33,7 +33,7 @@ public class JwtAuthEntity {
     private String expireDateTime;
 
     @NotNull
-    @Column(name = "status", columnDefinition = "int(1) default 0", nullable=false, updatable = false, insertable = false)
+    @Column(name = "status", columnDefinition = "int(1) default 0", nullable=false, insertable = false)
     private int status;
 
     @NotNull

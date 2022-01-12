@@ -1,5 +1,6 @@
 package com.example.jwttest.Security.jwt;
 
+import com.google.gson.Gson;
 import com.nimbusds.oauth2.sdk.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
             log.error(request.getRequestURI()+" - unAuthorizationCode Null");
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UnAuthorization");
         }else{
+            log.error(request.getRequestURI()+" - unAuthorizationCode "+new Gson().toJson(unAuthorizationCode));
             request.setAttribute("response.failure.code", unAuthorizationCode.name());
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, unAuthorizationCode.message());
         }

@@ -70,6 +70,8 @@ public class JwtTokenProvider {
 
     public JwtModel createToken(String uid, String id){            //버전 2 ?
         Map<String, Object> claims = new HashMap<>();
+        if(uid==null || id==null)
+            return null;
         claims.put("uid", uid);
         claims.put("id", id);
         Date now = new Date();
@@ -153,6 +155,16 @@ public class JwtTokenProvider {
         response.addHeader("Set-Cookie", cookie.toString());
     }
 
+
+    public void deleteCookie(HttpServletResponse response){
+        ResponseCookie cookie = ResponseCookie.from(HEADER_NAME, null)
+                .maxAge(0)
+                .path("/")
+                .build();
+        response.addHeader("Set-Cookie", cookie.toString());
+    }
+
+
     /**
      * 쿠키에 있는 토큰을 분석
      * @param request
@@ -176,7 +188,7 @@ public class JwtTokenProvider {
      */
     public Authentication getAuthentication(String token) {
         log.info("getAuthentication : "+token);
-        UserDetails userDetails = loginService.loadUserByUsername(this.getClaims(token, "sub"));
+        UserDetails userDetails = loginService.loadUserByUsername(this.getClaims(token, "uid"));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 

@@ -96,6 +96,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         excludeUrlPatterns.add("/login");
         excludeUrlPatterns.add("/logout");
         excludeUrlPatterns.add("/signup");
+        excludeUrlPatterns.add("/idCheck");
+        excludeUrlPatterns.add("/deleteCookie");
         excludeUrlPatterns.add("/resources/**");
 
         return excludeUrlPatterns.stream()

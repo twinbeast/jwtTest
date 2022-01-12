@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @Component
 public class UserDao {
@@ -18,6 +20,7 @@ public class UserDao {
 
     public Boolean duplicateCheck(String userId){
         PatientUserEntity entity = userRepo.findByPatientId(userId);
+        log.info("duplicateCheck : "+gson.toJson(entity));
         if(entity!=null)
             return true;
         else
@@ -33,6 +36,8 @@ public class UserDao {
                 .firstName(userData.getFirstName())
                 .lastName(userData.getLastName())
                 .sex(userData.getGender())
+                .status(0)
+                .regDate(LocalDateTime.now())
                 .build());
         return PatientUserVo.builder()
                 .patientNo(entity.getPatientNo().intValue())
@@ -42,7 +47,7 @@ public class UserDao {
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .gender(entity.getSex())
-                .regDate(entity.getRegDate())
+                .regDate(entity.getRegDate().toString())
                 .status(entity.getStatus())
                 .build();
     }

@@ -51,9 +51,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         /* (4) */
         http.authorizeRequests()                                                                //인증 URL 필터?
                 .antMatchers("/").permitAll()                                        //base url 허용
-                .antMatchers("/login").permitAll()                                //login url 허용
-                .antMatchers("/signUp").permitAll()                               //signUp url 허용
+                .antMatchers("/idCheck").permitAll()
+                .antMatchers("/signUp").permitAll()                                  //signUp url 허용
+                .antMatchers("/login").permitAll()                                   //login url 허용
                 .antMatchers("/resources/**").permitAll()                            //resources url 허용
+                .antMatchers("/deleteCookie").permitAll()
                 .anyRequest().authenticated();                                                  //그외 나머지 인증 검증
 
         /* (5) */

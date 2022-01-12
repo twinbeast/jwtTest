@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -21,5 +22,5 @@ public class PatientUserVo {
     private String dateOfBirth;
     private String gender;
     private int status;
-    private LocalDate regDate;
+    private String regDate;
 }
