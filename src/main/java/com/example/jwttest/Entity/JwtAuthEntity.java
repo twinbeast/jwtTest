@@ -3,6 +3,7 @@ package com.example.jwttest.Entity;
 import com.example.jwttest.Vo.Jwt.JwtMemberModel;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.springframework.data.jpa.repository.Temporal;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -51,10 +51,12 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
-    show-sql: true
-    generate-ddl: true      #DDL 적용할지 여부 (실서비스는 false)
+    show-sql: false
+    generate-ddl: false      #DDL 적용할지 여부 (실서비스는 false)
     hibernate:
-#      ddl-auto: none        #Default 아무것도 안함
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # Column Naming Strategy : userNo
+      #      ddl-auto: none        #Default 아무것도 안함
 #      ddl-auto: create-drop #SessionFactory 실행할때 drop & create -> 종료될때 drop (in-memory)
 #      ddl-auto: create      #SessionFactory 실행할때 drop & create
 #      ddl-auto: validate    #변경된 스키마가 있으면 종료

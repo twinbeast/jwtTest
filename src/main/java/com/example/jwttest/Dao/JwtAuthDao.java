@@ -64,7 +64,11 @@ public class JwtAuthDao {
         String id = member.getId();
         String token = member.getToken();
         String expiredDateTime = member.getExpiredDttm();
-        JwtAuthEntity authData = JwtAuthEntity.builder().patientNo(Long.parseLong(uid)).token(token).expireDateTime(expiredDateTime).build();
+        JwtAuthEntity authData = JwtAuthEntity.builder()
+                .patientNo(Long.parseLong(uid))
+                .token(token)
+                .expireDateTime(expiredDateTime)
+                .build();
         authRepo.save(authData);
     }
 }
